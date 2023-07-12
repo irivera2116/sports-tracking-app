@@ -1,4 +1,4 @@
-# project-2
+# Sports Tracking App
 
 # Preview
 
