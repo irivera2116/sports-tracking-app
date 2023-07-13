@@ -1,0 +1,21 @@
+[
+    {
+        "name": "PistonsFan01",
+        "email": "pistons@gmail.com",
+        "password": "password12345"
+    },
+        {
+        "name": "RedSoxCozy",
+        "email": "soxfan@hotmail.com",
+        "password": "password12345"
+    },    {
+        "name": "GSWarriors",
+        "email": "warriorsfan@yahoo.com",
+        "password": "password12345"
+    },
+        {
+        "name": "Giants4Ever",
+        "email": "bigblue@msn.com",
+        "password": "password12345"
+    }
+]
