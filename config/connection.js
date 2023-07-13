@@ -1,44 +1,28 @@
-const mysql = require('mysql');
+// Imports the Sequelize library
+const sequelize = require('sequelize');
 
-class Database {
-    constructor(config) {
-        this.connection = mysql.createConnection( process.env.JAWSDB_URL ? process.env.JAWSDB_URL : config );
-    }
+// envirnment variables from .env file is loaded
+require('dotenv').config();
 
-    query(sql, args=[]) {
-        return new Promise((resolve, reject) => {
-            this.connection.query(sql, args, (error, rows) => {
-                if (error) {
-                    return reject(error);
-                } else {
-                    resolve(rows);
-                }
-            });
-        });
-    }
+let sequelize; 
 
-    close() {
-        return new Promise((resolve, reject) => {
-            this.connection.end( error => {
-                if (error) {
-                    return reject(error);
-                } else {
-                    resolve();
-                }
-            } );
-        } );
-    }
+// For Heroku deployment this checks if JAWSDB_URL environment exists
+if (process.env.JAWSDB_URL) {
+    // A Sequelize instance is created using JAWSDB_URL environment
+    sequelize = new Sequelize(process.env.JAWSDB_URL);
+} else {
+    // local database configuration
+    sequelize = new Sequelize(
+        
+        process.env.DB_NAME,           // Database name
+        process.env.DB_USER,           // Database username
+        process.env.DB_PASSWORD,       // Database password
+        {
+            host: '',                // Database host
+            dialect: '',             // Database dialect (MySQL)
+            port: 3306 ,            // Database port number
+        })
 };
 
-const connectDB = (dbName, dbPassword) => {
-    const db = new Database({
-      host: "localhost",
-      port: 3306,
-      user: "root",
-      password: "123",
-      database: dbName
-    })
-    return db;
-};
-
-module.exports = connectDB;
+// The created Sequelize instance is exported
+module.exports = sequelize; 
