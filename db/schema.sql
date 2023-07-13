@@ -8,7 +8,7 @@ CREATE TABLE login_info (
   id INTEGER AUTO_INCREMENT NOT NULL,
   user_name VARCHAR(255) NOT NULL,
   user_password VARCHAR(255) NOT NULL,
-  isAdmin BOOLEAN DEFAULT false,
+  --isAdmin BOOLEAN DEFAULT false,
   PRIMARY KEY(id)
 );
 
