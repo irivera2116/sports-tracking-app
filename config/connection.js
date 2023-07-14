@@ -1,5 +1,5 @@
-// Imports the Sequelize library
-const sequelize = require('sequelize');
+// Imports the Sequelize library/ changed s to S to connect to line 12.
+const Sequelize = require('sequelize');
 
 // envirnment variables from .env file is loaded
 require('dotenv').config();

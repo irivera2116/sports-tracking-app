@@ -1,3 +1,5 @@
+// Tutor says this does not look correct. Need the model.init() function.
+
 const config = require("../config/connection");
 
 const rooms={
