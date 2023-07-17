@@ -40,4 +40,4 @@ Messages.init(
   }
 );
 
-module.exports = Project;
+module.exports = Messages;
