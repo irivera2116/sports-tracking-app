@@ -1,18 +1,34 @@
-// Tutor says this does not look correct. Need the model.init() function.
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
-const config = require("../config/connection");
+class Rooms extends Model {}
 
-const rooms={
+Rooms.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+   
+  },
+  {
+    sequelize,
+    timestamps: true,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'rooms',
+  }
+);
 
-    name:'rooms',
-
-    listAll: async function(){
-        const result = await config.selectAll(this.name)
-        return result; // if error try this : return result.rows;
-    }
-};
-
-module.exports = rooms;
-
-
-
+module.exports = Rooms;
