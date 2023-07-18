@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS chat_db
+DROP DATABASE IF EXISTS chat_db;
 
 CREATE DATABASE chat_db;
 -- we already have a database called chat_db in models/ user.js folder so this is a duplicate.
