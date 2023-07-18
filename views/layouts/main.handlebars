@@ -1,3 +1,44 @@
-{{!-- Look at activity 28 and it uses main layout for a html file type that when we run the handlebars it looks for this file --}}
-{{> login}}
-{{> signup}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Chat</title>
+  <link rel="stylesheet" href="/public/output.css">
+  <link rel="stylesheet" href="/public/style.css">
+</head>
+
+<body>
+  <div class="">
+    <header class="">
+      <h1>
+        
+      </h1>
+      <nav>
+        <!-- Conditionally render login or logout links -->
+        {{#if logged_in}}
+        <a href="">profile</a> |
+        <button class="" id="logout">logout</button>
+        {{else}}
+        <a href="">login</a>
+        {{/if}}
+      </nav>
+    </header>
+    <main class="">
+      <!-- Render the sub layout -->
+      {{{ body }}}
+    </main>
+    <footer>
+      
+    </footer>
+  </div>
+
+  <!-- Render script for logged in users only -->
+  {{#if logged_in}}
+  <script src="/public/javascript/logout.js"></script>
+  {{/if}}
+</body>
+
+</html>
+
