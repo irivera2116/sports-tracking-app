@@ -12,12 +12,8 @@ const io = require('socket.io')(http);
 const PORT = process.env.PORT || 3001;
 
 const routes = require('./controllers');
-app.use('/', routes);
-/*const myMiddleware = (req, res, next) => {
-  console.log('This is a middleware function.');
-  next();
-};*/
-//app.use(myMiddleware);
+app.use(routes);
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout: 'layouts'}));
