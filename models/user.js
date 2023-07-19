@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
+const orm = require('../config/orm');
 
 // User model definition
 class User extends Model {
@@ -24,6 +25,10 @@ User.init(
             allowNull: false,
         },
         last_name: {
+            type: DataTypes.STRING,
+            allowNull: false, 
+        },
+        display_name: {
             type: DataTypes.STRING,
             allowNull: false, 
         },
@@ -63,4 +68,47 @@ User.init(
     }  
 );
 
+const user = {
+    name: 'users',
+
+    listAll: async function() {
+        const result = await orm.selectAll(this.name);
+        return result;
+    },
+
+    addNew: async function(loginID, firstName, lastName, displayName) {
+        const vars = '(id, first_name, last_name, display_name)';
+        const data = `(${loginID}, '${firstName}', '${lastName}', '${displayName}')`;
+        await orm.insertOne(this.name, vars, data);
+    },
+
+    updateFirstName: async function(loginID, newFirstName) {
+        const change = `first_name = '${newFirstName}'`;
+        const index = `id = ${loginID}`;
+        await orm.updateOne(this.name, change, index);
+    },
+
+    updateLastName: async function(loginID, newLastName) {
+        const change = `last_name = '${newLastName}'`;
+        const index = `id = ${loginID}`;
+        await orm.updateOne(this.name, change, index);
+    },
+
+    updateDisplayName: async function(loginID, newDisplayName) {
+        const change = `display_name = '${newDisplayName}'`;
+        const index = `id = ${loginID}`;
+        await orm.updateOne(this.name, change, index);
+    },
+
+    getUserInfo: async function(accesskey) {
+        const result = await orm.findOne(
+            'users LEFT JOIN login_info ON login_info.id = id',
+            'users.id, users.display_name, users.avatar_dirct',
+            `login_info.user_name = \'${accesskey}\';`
+        )
+        return result[0];
+    }
+};
+
+module.exports = user;
 module.exports = User; // Export the User model
