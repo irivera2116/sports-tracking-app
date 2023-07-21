@@ -1,101 +1,94 @@
-  <!-- Side  -->
-  <div onClick="hideMenu(event)" id="mySidepanel" class="sidepanel bg-dark collapse">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-    <ul id="sbRoomList" class="mb-5 center"></ul>
-    <h4 class="text-light paddingLeft">Online Users</h4>
-    <ul class="text-light paddingLeft" id="sbUserList"></ul>
-  </div>
+<!-- Side  -->
+<div onClick="hideMenu(event)" id="mySidepanel" class="columns-1">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
+  <ul id="sbRoomList" class="mb-5 center"></ul>
+  <h4 class="font-bold text-3xl px-2">Online Users</h4>
+  <ul class="text-zinc-300 px-2" id="sbUserList">BigMikey</ul>
+</div>
 
 
+<!-- CHAT ROOM DISPLAY -->
+<div class="bg-white rounded text-gray-950 border px-3">
+  <div class="columns-3">
+    <!-- LEFT HAND SIDE (ROOMS) -->
+    <div>
+      <h4 class="font-bold text-3xl">Room List</h4>
+      <button id="nfl" class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" onclick="">NFL</button>
+      <button id="nba" class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" onclick="">NBA</button>
+      <button id="nhl" class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" onclick="">NHL</button>
+      <button id="mlb" class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" onclick="">MLB</button>
+      <button id="mls" class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" onclick="">MLS</button>
+    </div>
 
-
-
-
-
-
-  <!-- CHAT ROOM DISPLAY -->
-  <div class="container-fluid fill-height">
-    <div class="row">
-      <!-- LEFT HAND SIDE (ROOMS) -->
-      <div class="col-lg-2 color side padding d-none d-lg-block d-xl-nonetext">
-        <h4>Room List</h4>
-        <ul id="roomList"></ul>
-      </div>
-      <!-- MAIN FOCUS (MESSAGES) -->
-      <div class="col-lg-8 color padding">
-        <h3 id="roomName">Room name</h3>
-        <ul class="msg-list" id="msgList"></ul>
-        <!-- INPUT AREA -->
-        <form class="input-group" id="msgForm">
-          <input type="text" class="form-control" id="msg" placeholder="Type message here" />
-          <button class="btn btn-primary send-btn" id="sendBtn">Send</button>
-        </form>
-      </div>
-      <!-- RIGHT HAND SIDE (USERS) -->
-      <!-- hide this column if screen size is less than large -->
-      <div class="col-lg-2 d-none d-lg-block d-xl-nonetext-end side padding textEnd">
-        <h4>Online Users</h4>
-        <ul id="userList"></ul>
+    <!-- ROOM LIST OVERLAY -->
+    <div class="room-overlay" id="roomOverlay">
+      <div class="chatroom-container">
+        <header class="chatroom-header">
+          <h2 class="font-bold text-2xl">NFL Room</h2>
+        </header>
+        <main class="chatroom-main">
+          <ul id="overlayRoomList"></ul>
+          <button type="button" class="bg-slate-700 font-bold text-zinc-300 w-half border-2 border-slate-700 rounded" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">Add Room</button>
+        </main>
       </div>
     </div>
-  </div>
-  <!-- ROOM LIST OVERLAY -->
-  <div class="room-overlay" id="roomOverlay">
-    <div class="chatroom-container">
-      <header class="chatroom-header">
-        <h2>Room List</h4>
-      </header>
-      <main class="chatroom-main">
-        <ul id="overlayRoomList"></ul>
-        <button type="button" class="btn btn-info btnFeature" data-bs-toggle="modal" data-bs-target="#exampleModal">Add
-          Room</button>
-      </main>
-    </div>
-  </div>
 
-  <!-- ADD ROOM MODAL-->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add a Room</h5>
-        </div>
-        <div class="modal-body">
-          <form class="login">
-            <div class="form-group">
-              <label for="addRoom">Room Name:</label>
-              <input id="addRoom" type="text" placeholder="Room Name">
-              <br />
-              <span id="error1" class="d-none">The Room Name already exists, or contains a space. Try again.</span>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button id="addRoomBtn" onClick="createRoom()" type="button" class="btn btn-primary">Add Room</button>
+    <!-- ADD ROOM MODAL-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add a Room</h5>
+          </div>
+          <div class="modal-body">
+            <form class="login">
+              <div class="form-group text-bold">
+                <label for="addRoom">Room Name:</label>
+                <input class="" id="addRoom" type="text" placeholder="Room Name">
+                <br />
+                <span id="error1" class="d-none">The Room Name already exists, or contains a space. Try again.</span>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button id="addRoomBtn" onClick="createRoom()" type="button" class="btn btn-primary">Add Room</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- DELETE ROOM CONFIRM MODAL -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Delete Confirmation</h5>
-        </div>
-        <div class="modal-body">
-          Woah! Are you sure you want to delete the Room?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button id="deleteRoomBtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">DELETE</button>
+    <!-- DELETE ROOM CONFIRM MODAL -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Delete Confirmation</h5>
+          </div>
+          <div class="modal-body">
+            Woah! Are you sure you want to delete the Room?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button id="deleteRoomBtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">DELETE</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <script src="assets/JavaScript/socket.io.js"></script>
-  <script src="assets/JavaScript/chatroom.js"></script>
+<!-- MAIN FOCUS (MESSAGES) -->
+<div class="flex">
+  <h3 class="font-bold " id="roomName"></h3>
+  <ul class="msg-list" id="msgList"></ul>
+  <!-- INPUT AREA -->
+  <form class="input-group" id="msgForm">
+    <input type="text" class="text-gray-950 border-slate-700 rounded" id="msg" placeholder="Type message here"/>
+    <button class="bg-slate-700 font-bold text-zinc-300 w-half border-2 border-slate-700 rounded" id="sendBtn">Send</button>
+  </form>
+</div>
+
+<script src="assets/JavaScript/socket.io.js"></script>
+<script src="assets/JavaScript/chatroom.js"></script>
