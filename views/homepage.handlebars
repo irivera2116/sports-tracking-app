@@ -1,3 +1,26 @@
+<!-- Side  -->
+<div onClick="hideMenu(event)" id="mySidepanel" class="columns-1">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
+  <ul id="sbRoomList" class="mb-5 center"></ul>
+  <h4 class="font-bold text-3xl px-2">Online Users</h4>
+  <ul class="text-zinc-300 px-2" id="sbUserList">BigMikey</ul>
+</div>
+
+ <!-- Score Display -->
+  <div>
+    <h2>Scores</h2>
+    {{#if scoresData.length}}
+    <ul>
+      {{#each scoresData}}
+      <li>{{this.score}}</li>
+      {{/each}}
+    </ul>
+    {{else}}
+    <p>No Scores Available</p>
+    {{/if}}
+  </div>
+
+
 <!-- CHAT ROOM DISPLAY -->
 <div class="bg-white rounded text-gray-950 border px-3">
   <div class="columns-3">

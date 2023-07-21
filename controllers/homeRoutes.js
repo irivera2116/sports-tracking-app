@@ -1,14 +1,30 @@
 const router = require('express').Router();
-const { Project, User } = require('../models');
-const withAuth = require('../utils/auth');
+const axios = require('axios');
+const { rapidAPIKey } = require('../config/key');
 
 router.get('/', async (req, res) => {
   try {
-    
-    // Pass serialized data and session flag into template
-    res.render('homepage', { 
-    
-    });
+    // Make an API request to fetch scores data
+    const options = {
+      method: 'GET',
+      url: 'https://allscores.p.rapidapi.com/api/allscores/search',
+      params: {
+        filter: 'all',
+        timezone: 'America/Chicago',
+        langId: '1',
+        query: 'Benfica'
+      },
+      headers: {
+        'X-RapidAPI-Key': rapidAPIKey,
+        'X-RapidAPI-Host': 'allscores.p.rapidapi.com'
+      }
+    };
+
+    const response = await axios.request(options);
+    const scoresData = response.data;
+
+    // Render the homepage view with the scoresData
+    res.render('homepage', { scoresData });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -25,7 +41,6 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
-  
   if (req.session && req.session.logged_in) {
     res.redirect('/');
     return;
@@ -34,5 +49,5 @@ router.get('/signup', (req, res) => {
   res.render('signup');
 });
 
-
 module.exports = router;
+
