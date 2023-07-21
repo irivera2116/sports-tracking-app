@@ -1,37 +1,15 @@
-<main class="container mt-5">
-  <h1 class="mb-4 text-white">Sports Chat</h1>
-  <div class="row">
-    {{#each posts}}
-      <div class="col-md-4">
-        <div class="card mb-3">
-          <div class="card-header bg-warning">
-            <h2 class="card-title">
-              <a href="/post/{{id}}" class="text-dark">{{title}}</a>
-            </h2>
-          </div>
-          <div class="card-body text-dark">
-            <p>Created by: {{user.username}} Date: {{format_date createdAt}}</p>
-          </div>
-        </div>
-      </div>
-    {{/each}}
+  <!-- Side  -->
+  <div onClick="hideMenu(event)" id="mySidepanel" class="sidepanel bg-dark collapse">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <ul id="sbRoomList" class="mb-5 center"></ul>
+    <h4 class="text-light paddingLeft">Online Users</h4>
+    <ul class="text-light paddingLeft" id="sbUserList"></ul>
   </div>
 
 
 
-  <!-- Score Display -->
-  <div>
-    <h2>Scores</h2>
-    {{#if scoresData.length}}
-    <ul>
-      {{#each scoresData}}
-      <li>{{this.score}}</li>
-      {{/each}}
-    </ul>
-    {{else}}
-    <p>No Scores Available</p>
-    {{/if}}
-  </div>
+
+
 
 
 
@@ -40,12 +18,12 @@
     <div class="row">
       <!-- LEFT HAND SIDE (ROOMS) -->
       <div class="col-lg-2 color side padding d-none d-lg-block d-xl-nonetext">
-        <h3>Room List</h3>
+        <h4>Room List</h4>
         <ul id="roomList"></ul>
       </div>
       <!-- MAIN FOCUS (MESSAGES) -->
       <div class="col-lg-8 color padding">
-        <h2 id="roomName">Room name</h2>
+        <h3 id="roomName">Room name</h3>
         <ul class="msg-list" id="msgList"></ul>
         <!-- INPUT AREA -->
         <form class="input-group" id="msgForm">
@@ -121,10 +99,3 @@
 
   <script src="assets/JavaScript/socket.io.js"></script>
   <script src="assets/JavaScript/chatroom.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-    crossorigin="anonymous"></script>
-
-</body>
-
-</html>

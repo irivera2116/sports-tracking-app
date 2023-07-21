@@ -1,6 +1,7 @@
 USE chat_db;
 
 -- For table: rooms
+
 INSERT INTO rooms (room_name) VALUES
   ('NFL'),
   ('MLB'),

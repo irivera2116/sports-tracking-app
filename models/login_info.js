@@ -1,46 +1,41 @@
-const orm = require('../config/orm');
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+class LoginInfo extends Model {}
 
-const login_info = {
-    name: 'login_info',
-
-    listAll: async function() {
-        const result = await orm.selectAll(this.name);
-        return result;
+LoginInfo.init(
+  {
+   user_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
-
-    matchPassword: async function(userName, inputPassword) {
-        let target = 'user_password';
-        let index = `(user_name = '${userName}')`;
-        let result = await orm.findOne(this.name, target, index);
-        return result[0].user_password === inputPassword;
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
-
-    checkExistingUsername: async function(newUsername) {
-        const column = 'user_name';
-        const exists = `(user_name = '${newUsername}')`;
-        const result = await orm.findOne(this.name, column, exists);
-        return result[0];
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
     },
+    email: {
+        type: DataTypes.STRING,
+        unique:true, 
+        allowNull: false,
+        validate: {
+            isEmail: true,
+        },
+  },
+  },
 
-    addNew: async function(username, password) {
-        const vars = '(user_name, user_password)';
-        const data = `('${username}', '${password}')`;
-        await orm.insertOne(this.name, vars, data);
-    },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'project',
+  }
+);
 
-    matchWithUser: async function(username){
-        const column = '*';
-        const where = `(user_name = '${username}')`;
-        const result = await orm.findOne(this.name, column, where );
-        return result[0];
-    },
-
-    getId: async function(username, password) {
-        const result = await orm.findOne(this.name, 'id', `user_name = \'${username}\' AND user_password = \'${password}\'`);
-        if (result === []) return null;
-        else return result[0];
-    }
-
-};
-
-module.exports = login_info;
+module.exports = LoginInfo;

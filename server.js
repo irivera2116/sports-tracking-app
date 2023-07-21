@@ -12,8 +12,6 @@ const axios = require('axios');
 const { rapidAPIKey } = require('./config/key')
 const PORT = process.env.PORT || 3001;
 const routes = require('./controllers');
-
-
 app.use(routes);
 
 
