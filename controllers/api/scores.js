@@ -2,19 +2,21 @@
 const express = require('express');
 const axios = require('axios');
 const { rapidAPIKey } = require('../../config/key');
-
 const router = express.Router();
 
 router.get('/', async (req, res) => {
   try {
     const options = {
       method: 'GET',
-      url: 'https://allscores.p.rapidapi.com/api/allscores/search',
+      url: 'https://allscores.p.rapidapi.com/api/allscores/games-scores',
       params: {
-        filter: 'all',
-        timezone: 'America/Chicago',
+        startDate: '18/01/20223',
         langId: '1',
-        query: 'Benfica'
+        sport: '1',
+        endDate: '18/01/20223',
+        timezone: 'America/Chicago',
+        onlyMajorGames: 'true',
+        withTop: 'true'
       },
       headers: {
         'X-RapidAPI-Key': rapidAPIKey,
@@ -23,10 +25,9 @@ router.get('/', async (req, res) => {
     };
 
     const response = await axios.request(options);
-    console.log(response.data);
+    const scoresData = response.data;
 
-    // Send the response data back to the client
-    res.json(response.data);
+    res.render('scores', { scoresData });
   } catch (error) {
     console.error('Error fetching scores:', error);
     res.status(500).send('Internal Server Error');
