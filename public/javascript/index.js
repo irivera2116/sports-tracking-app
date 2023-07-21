@@ -1,9 +1,9 @@
-const usernameInput = document.getElementById('username');
-const passwordInput = document.getElementById('password');
+const usernameInput = document.getElementById('user-log');
+const passwordInput = document.getElementById('password-log');
 const alertBox = document.querySelector('#errorBox');
 
 // INITIALIZATION
-if (window.sessionStorage.accesskey) window.location.replace('/chatroom');
+if (window.sessionStorage.accesskey) window.location.replace('/homepage');
 
 function fetchJSON( url, method='get', data={} ){
     const fetchOptions = {
@@ -23,7 +23,7 @@ async function login(){
     if (result.code === 202){
         sessionStorage.accesskey = result.accesskey;
         console.log('login valid');
-        window.location.replace("/chatroom");
+        window.location.replace("/homepage");
     }
     // An alert will pop up for 5 seconds if the server sends back a fail match
     else {

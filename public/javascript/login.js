@@ -1,8 +1,8 @@
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
-  const email = document.querySelector("#email-login").value.trim();
-  const password = document.querySelector("#password-login").value.trim();
+  const email = document.querySelector("#user-log").value.trim();
+  const password = document.querySelector("#password-log").value.trim();
 
   if (email && password) {
     // might be the wrong path to get the login information
@@ -12,7 +12,7 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/");
+      document.location.replace("/homepage");
     } else {
       alert("Incorrect login!");
     }
