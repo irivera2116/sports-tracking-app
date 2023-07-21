@@ -6,6 +6,20 @@
   <ul class="text-zinc-300 px-2" id="sbUserList">BigMikey</ul>
 </div>
 
+ <!-- Score Display -->
+  <div>
+    <h2>Scores</h2>
+    {{#if scoresData.length}}
+    <ul>
+      {{#each scoresData}}
+      <li>{{this.score}}</li>
+      {{/each}}
+    </ul>
+    {{else}}
+    <p>No Scores Available</p>
+    {{/if}}
+  </div>
+
 
 <!-- CHAT ROOM DISPLAY -->
 <div class="bg-white rounded text-gray-950 border px-3">
