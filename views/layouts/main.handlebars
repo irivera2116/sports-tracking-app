@@ -1,44 +1,52 @@
-<!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sports Chat</title>
-  <link rel="stylesheet" href="/output.css">
-  <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sports Chat</title>
+    <link rel="stylesheet" href="/output.css" />
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
 
-<body class="dark:text-zinc-300 bg-white dark:bg-slate-700">
-  <div class="">
-    <header class="">
-      <h1>
-        
-      </h1>
-      <nav>
-        <!-- Conditionally render login or logout links -->
-        {{#if logged_in}}
-        <a href="/views/login.handlebars">Profile</a> |
-        <button class="" id="logout">logout</button>
-        {{/if}}
-      </nav>
-    </header>
-    <main class="">
-      <!-- Render the sub layout -->
-      {{{ body }}}
-    </main>
-    <footer>
-      
-    </footer>
-  </div>
+  <body class="dark:text-zinc-300 bg-white dark:bg-slate-700">
+    <div class="">
+      <header class="">
+        <h1 class="font-extrabold text-lg text-right px-2 pt-1">
+          Leagues Disputed
+          <i class="px-1 fa-solid fa-football" style="color: #6c6c6c;"></i>
+          <i class="px-1 fa-solid fa-basketball" style="color: #6c6c6c;"></i>
+          <i class="px-1 fa-solid fa-baseball" style="color: #6c6c6c;"></i>
+        </h1>
+        <nav>
+          <!-- Conditionally render login or logout links -->
+          {{#if logged_in}}
+            <a href="/views/login.handlebars">Profile</a>
+            |
+            <button class="" id="logout">logout</button>
+          {{/if}}
+        </nav>
+      </header>
+      <main class="">
+        <!-- Render the sub layout -->
+        {{{body}}}
+      </main>
+      <footer>
 
-  <!-- Render script for logged in users only -->
-  {{#if logged_in}}
-  <script src="/public/javascript/logout.js"></script>
-  {{/if}}
-  <script src="https://cdn.tailwindcss.com"></script>
-</body>
+      </footer>
+    </div>
+
+    <!-- Render script for logged in users only -->
+    {{#if logged_in}}
+      <script src="/public/javascript/logout.js"></script>
+    {{/if}}
+    <script src="https://cdn.tailwindcss.com"></script>
+  </body>
 
 </html>
-
