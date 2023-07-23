@@ -1,49 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sport Chat Room</title>
-
-  
-</head>
-
-<body>
+<div>
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mySidepanel">
         <span class="navbar-toggler-n"></span>
       </button>
-      <a class="navbar-brand" href="/"><b>CHATROOMS</b></a>
+      <a class="font-mono text-2xl" href="/"><b>CHATROOMS</b></a>
       <div id="navbarNav" class="navbar-nav">
-        <button class="btn nav-link active" aria-current="page" id="logoutBtn">Log out</button>
+        <button class="border-2 rounded-full whitespace-pre font-bold" aria-current="page" id="logoutBtn"> Log out </button>
       </div>
     </div>
   </nav>
 
-  <!-- Side  -->
+  {{!-- <!-- Side  -->
   <div onClick="hideMenu(event)" id="mySidepanel" class="sidepanel bg-dark collapse">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     <ul id="sbRoomList" class="mb-5 center"></ul>
-    <h4 class="text-light paddingLeft">Online Users</h4>
+    <h4 class="text-zinc-300">Online Users</h4>
     <ul class="text-light paddingLeft" id="sbUserList"></ul>
-  </div>
-
-
-
-
-
-
-
+  </div> --}}
 
   <!-- CHAT ROOM DISPLAY -->
-  <div class="container-fluid fill-height">
+  <div class="grid grid-cols-1 gap-4 content-start">
     <div class="row">
       <!-- LEFT HAND SIDE (ROOMS) -->
-      <div class="col-lg-2 color side padding d-none d-lg-block d-xl-nonetext">
+      <div class="max-w-[15%] ">
         <h4>Room List</h4>
         <ul id="roomList"></ul>
       </div>
@@ -112,7 +93,7 @@
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">Delete Confirmation</h5>
         </div>
-        <div class="modal-body">
+        <div class="alert">
           Woah! Are you sure you want to delete the Room?
         </div>
         <div class="modal-footer">
@@ -128,6 +109,4 @@
   <script src="javascript/chatroom.js"></script>
 
 
-</body>
-
-</html>
+</div>

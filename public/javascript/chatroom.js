@@ -31,7 +31,7 @@ async function checkAccesskey() {
 async function roomList() {
     document.querySelector('#roomList').innerHTML = '';
     document.querySelector('#overlayRoomList').innerHTML = '';
-    document.querySelector('#sbRoomList').innerHTML = '';
+    // document.querySelector('#sbRoomList').innerHTML = '';
     // GET REQUEST: room list
     const rooms = await fetch('/api/rooms').then(r => r.json());
     // print rooms to room list
@@ -41,8 +41,8 @@ async function roomList() {
         document.querySelector('#overlayRoomList').innerHTML +=
       `<li><button class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" id="overlayRoom-${rooms[i].id}">${rooms[i].room_name}</button>
       <button class="btn btn-outline-danger chatroomBtnDelete" id="overlayRoomDel-${rooms[i].id}" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick="triggerModal('${rooms[i].id}')">Delete</button></li>`;
-        document.querySelector('#sbRoomList').innerHTML +=
-      `<li class="center"><button class="btn btn-info chatroomBtn btnSize" id="sbRoom-${rooms[i].id}">${rooms[i].room_name}</button></li>`;
+       // document.querySelector('#sbRoomList').innerHTML +=
+     // `<li class="center"><button class="btn btn-info chatroomBtn btnSize" id="sbRoom-${rooms[i].id}">${rooms[i].room_name}</button></li>`;
     }
     // add event listeners
     for (let i = 0; i < rooms.length; i++) {
@@ -52,9 +52,9 @@ async function roomList() {
         document.querySelector(`#overlayRoom-${rooms[i].id}`).addEventListener('click', () => {
             joinRoom(rooms[i])
         });
-        document.querySelector(`#sbRoom-${rooms[i].id}`).addEventListener('click', () => {
-            joinRoom(rooms[i])
-        });
+        //document.querySelector(`#sbRoom-${rooms[i].id}`).addEventListener('click', () => {
+        //    joinRoom(rooms[i])
+       // });
     }
 }
 
@@ -73,14 +73,14 @@ function hideMenu(event){
 async function userList() {
     // TO-DO: load online users list (#userList)
     document.querySelector('#userList').innerHTML = '';
-    document.querySelector('#sbUserList').innerHTML = '';
+    //document.querySelector('#sbUserList').innerHTML = '';
     // GET REQUEST: users list
     const users = await fetch(`/api/online/${currentRoomId}`).then(r => r.json());
     console.log('users:', users);
     // print users to user list
     for (let i = 0; i < users.length; i++) {
         document.querySelector('#userList').innerHTML += `<li><img src="./avatars/${users[i].avatar}" alt="avatar" height="25px" width="25px"/> ${users[i].displayName}</li>`;
-        document.querySelector('#sbUserList').innerHTML += `<li>${users[i].displayName}</li>`;
+       // document.querySelector('#sbUserList').innerHTML += `<li>${users[i].displayName}</li>`;
     }
 }
 
