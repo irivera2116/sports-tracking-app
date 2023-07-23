@@ -14,33 +14,33 @@
 
 
 <!-- CHAT ROOM DISPLAY -->
-<div class="bg-white rounded text-gray-950 border px-3">
-  <div class="columns-3">
+<div class="h-full bg-white rounded text-gray-950 ">
+  <div>
     <!-- LEFT HAND SIDE (ROOMS) -->
-    <div>
-      <h4 class="font-bold text-3xl">Room List</h4>
-      <button id="nfl" class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" onclick="">NFL</button>
-      <button id="nba" class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" onclick="">NBA</button>
-      <button id="nhl" class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" onclick="">NHL</button>
-      <button id="mlb" class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" onclick="">MLB</button>
-      <button id="mls" class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" onclick="">MLS</button>
-    </div>
+    <aside class=" flex-column float-left w-44 h-full bg-slate-700">
+      <h4 class="font-bold text-3xl text-zinc-300 text-center">Room List</h4>
+      <button id="nfl" class="bg-white font-bold text-slate-700 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-zinc-300 mt-3" onclick="">NFL</button>
+      <button id="nba" class="bg-white font-bold text-slate-700 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-zinc-300 mt-3" onclick="">NBA</button>
+      <button id="nhl" class="bg-white font-bold text-slate-700 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-zinc-300 mt-3" onclick="">NHL</button>
+      <button id="mlb" class="bg-white font-bold text-slate-700 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-zinc-300 mt-3" onclick="">MLB</button>
+      <button id="mls" class="bg-white font-bold text-slate-700 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-zinc-300 mt-3" onclick="">MLS</button>
+    </aside>
 
     <!-- ROOM LIST OVERLAY -->
-    <div class="room-overlay" id="roomOverlay">
-      <div class="chatroom-container">
+    <div class="flex p-2 text-center" id="roomOverlay">
+      <div class="w-full chatroom-container">
         <header class="chatroom-header">
           <h2 class="font-bold text-2xl">Chat Room</h2>
         </header>
-        <div class="chatroom-main">
+  <!--   <div class="chatroom-main">
           <ul id="overlayRoomList"></ul>
           <button type="button" class="bg-slate-700 font-bold text-zinc-300 w-half border-2 border-slate-700 rounded" data-bs-toggle="modal"
             data-bs-target="#exampleModal">Add Room</button>
-        </div>
+        </div> -->
       </div>
     </div>
 
-    <!-- ADD ROOM MODAL-->
+    <!-- ADD ROOM MODAL
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -63,9 +63,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <!-- DELETE ROOM CONFIRM MODAL -->
+    <!-- DELETE ROOM CONFIRM MODAL 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -82,19 +82,21 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 
-<!-- MAIN FOCUS (MESSAGES) -->
-<div class="flex">
+  <!-- MAIN FOCUS (MESSAGES) -->
+  <div class="block">
+  <div class=" h-4/5 bg-slate-700 lg:w-1/2 lg:mx-auto mt-2 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 overflow-y-scroll mb-4 pb-3 pt-3">
   <h3 class="font-bold " id="roomName"></h3>
   <ul class="msg-list" id="msgList"></ul>
+  </div>
   <!-- INPUT AREA -->
-  <form class="input-group" id="msgForm">
-    <input type="text" class="text-gray-950 border-slate-700 rounded" id="msg" placeholder="Type message here"/>
+  <form class=" align-bottom flex flex-row bg-slate-700 rounded-md px-4 py-3 z-10 max-w-full-lg mx-2 justify-center shadow-md" id="msgForm">
+    <input type="text" class="flex-1 text-white bg-transparent outline-none" id="msg" placeholder="Type message here"/>
     <button class="bg-slate-700 font-bold text-zinc-300 w-half border-2 border-slate-700 rounded" id="sendBtn">Send</button>
   </form>
+  </div>
 </div>
-
 <script src="assets/JavaScript/socket.io.js"></script>
 <script src="assets/JavaScript/chatroom.js"></script>
