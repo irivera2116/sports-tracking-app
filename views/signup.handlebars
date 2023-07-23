@@ -1,91 +1,93 @@
-<!-- Register Form -->
-<div class="flex justify-center items-center h-screen">
+<!DOCTYPE html>
+<html lang="en">
 
-  <form
-    id="register-form"
-    class="w-96 p-6 shadow-lg bg-white rounded-md text-slate-600"
-  >
-    <h1 class="font-bold text-center text-2xl text-gray-600">Registration</h1>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./javascript/signup.js" defer></script>
+  <title>FluxIM</title>
+</head>
 
-    <div class="mt-3">
-      <label for="register-first-name" class="block text-base mb-2">First Name</label>
-      <input
-        type="text"
-        id="register-first-name"
-        name="firstname"
-        placeholder="Enter your first name"
-        class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-500"
-      />
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><b>Flux IM</b></a>
+      <div id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home Page</a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
 
-    <div class="mt-3">
-      <label for="register-last-name" class="block text-base mb-2">Last Name</label>
-      <input
-        type="text"
-        id="register-last-name"
-        name="lastname"
-        placeholder="Enter your last name"
-        class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-500"
-      />
-    </div>
+  <div id="first" class="home-container">
+    <header class="home-header">
+      <h1>Sign Up</h1>
+    </header>
+    <main class="home-main">
+      <form class="login mb-2">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <br>
+          <input id="username" type="text" onblur="checkUsername()" placeholder="Username"><span id="error1"
+            class="d-none">Username already taken!</span><span id="error1b" class="d-none">You must type in a
+            username.</span><span id="error1c" class="d-none"> No space allowed.</span><span id="noerror1"
+            class="d-none">The username is available.</span>
+        </div>
+        <div class="form-group mt-3">
+          <label for="username">First Name:</label>
+          <br>
+          <input id="firstname" type="text" placeholder="First name"><span id="error4" class="d-none">You must give your
+            name.</span>
+        </div>
+        <div class="form-group mt-3">
+          <label for="username">Last Name:</label>
+          <br>
+          <input id="lastname" type="text" placeholder="Last name"><span id="error5" class="d-none">You must give your
+            name.</span>
+        </div>
+        <div class="form-group mt-3">
+          <label for="password">Password:</label>
+          <br>
+          <input class="pw" id="password" type="password" placeholder="Password">
+        </div>
+        <div class="form-group mt-3">
+          <label for="passwordConfirm">Confirm Password:</label>
+          <br>
+          <input class="pw" id="passwordConfirm" type="password" placeholder="Password"><span id="error3"
+            class="d-none">Passwords do not match or are blank.</span>
+        </div>
+      </form>
+      <!-- Button trigger modal -->
+      <button id="continue" type="button" class="btn btn-primary" data-bs-toggle="modal" onClick="checkUser(event)">Continue</button>
+    </main>
+  </div>
 
-    <div class="mt-3">
-      <label for="register-display-name" class="block text-base mb-2">Display
-        Name</label>
-      <input
-        type="text"
-        id="register-display-name"
-        name="displayname"
-        placeholder="Enter your display name"
-        class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-500"
-      />
+  <!-- Modal Avatar -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Choose Your Avatar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="modal-body" class="modal-body row text-center">
+      </div>
+      <div class="modal-footer">
+        <div id="register" class="text-center">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button onClick="register(event)" type="button" class="btn btn-primary">Register</button>
+          <span id="error4" class="d-none">Choose an avatar to register.</span>
+        </div>
+      </div>
     </div>
-
-    <div class="mt-3">
-      <label for="register-email" class="block text-base mb-2">Email</label>
-      <input
-        type="email"
-        id="register-email"
-        name="email"
-        placeholder="Enter you Email"
-        class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-500"
-      />
-    </div>
-
-    <div class="mt-3">
-      <label
-        for="register-password"
-        class="block text-base mb-2"
-      >Password</label>
-      <input
-        type="password"
-        id="register-password"
-        name="password"
-        placeholder="Enter your Password"
-        class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-500"
-      />
-    </div>
-
-    <div class="mt-3">
-      <label
-        for="register-confirm-passwrod"
-        class="block text-base mb-2"
-      >Confirm Password</label>
-      <input
-        type="password"
-        id="register-confirm-password"
-        name="confirm-password"
-        placeholder="Confirm your Password"
-        class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-500"
-      />
-    </div>
-
-    <!-- Submit for register button -->
-    <div class="mt-3">
-      <button
-        class="text-zinc-300 bg-slate-700 w-full border-2 border-slate-700 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700"
-        type="submit"
-      >Register</button>
-    </div>
-  </form>
+  </div>
 </div>
+
+</body>
+
+</html>

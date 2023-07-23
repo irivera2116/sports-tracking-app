@@ -1,6 +1,5 @@
 require('dotenv').config();
-const connection = require('./connection');
-//const db = connection('chat_db', process.env.SQL_PASSWORD);
+const db = require('./connection')('chat_db', process.env.SQL_PASSWORD);
 
 const orm = {
     async selectAll(tableName) {

@@ -1,6 +1,6 @@
 const socket = io();
 let currentRoomId = null;
-let userInfo = { id: null, displayName: null, roomId: null, socketId: null };
+let userInfo = { id: null, displayName: null, avatar: null, roomId: null, socketId: null };
 
 document.querySelector('#msgForm').addEventListener('submit', sendMsg);
 document.querySelector('#logoutBtn').addEventListener('click', logOut);
@@ -14,14 +14,15 @@ socket.on('connect', () => {
 async function checkAccesskey() {
     // redirect to noaccess if no accesskey
     if (!sessionStorage.accesskey) {
-        window.location.replace('/noaccess');
+        window.location.replace('/');
     }
     // grab user info using accessKey
     const accesskey = window.sessionStorage.accesskey;
     // save user info
-    const { id, display_name } = await fetch(`/api/users/${accesskey}`).then(r => r.json());
+    const { id, display_name, avatar_dirct } = await fetch(`/api/users/${accesskey}`).then(r => r.json());
     userInfo.id = id;
     userInfo.displayName = display_name;
+    userInfo.avatar = avatar_dirct;
     userInfo.socketId = socket.id;
     // send connected status to server
     socket.emit('connectToServer', userInfo);
@@ -36,9 +37,9 @@ async function roomList() {
     // print rooms to room list
     for (let i = 0; i < rooms.length; i++) {
         document.querySelector('#roomList').innerHTML +=
-      `<li><button class="btn btn-color chatroomBtn btnChatRoomsize" id="room-${rooms[i].id}">${rooms[i].room_name}</button></li>`;
+      `<li><button class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" id="room-${rooms[i].id}">${rooms[i].room_name}</button></li>`;
         document.querySelector('#overlayRoomList').innerHTML +=
-      `<li><button class="btn btn-info chatroomBtn" id="overlayRoom-${rooms[i].id}">${rooms[i].room_name}</button>
+      `<li><button class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" id="overlayRoom-${rooms[i].id}">${rooms[i].room_name}</button>
       <button class="btn btn-outline-danger chatroomBtnDelete" id="overlayRoomDel-${rooms[i].id}" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick="triggerModal('${rooms[i].id}')">Delete</button></li>`;
         document.querySelector('#sbRoomList').innerHTML +=
       `<li class="center"><button class="btn btn-info chatroomBtn btnSize" id="sbRoom-${rooms[i].id}">${rooms[i].room_name}</button></li>`;
@@ -78,6 +79,7 @@ async function userList() {
     console.log('users:', users);
     // print users to user list
     for (let i = 0; i < users.length; i++) {
+        document.querySelector('#userList').innerHTML += `<li><img src="./avatars/${users[i].avatar}" alt="avatar" height="25px" width="25px"/> ${users[i].displayName}</li>`;
         document.querySelector('#sbUserList').innerHTML += `<li>${users[i].displayName}</li>`;
     }
 }
@@ -90,7 +92,7 @@ async function prevMsgs(roomId) {
         .catch(err => [{ display_name: 'Error', message_body: err }]);
     // print messages
     for (let i = 0; i < prev.length; i++) {
-        document.querySelector('#msgList').innerHTML += `<li> ${prev[i].display_name}: ${prev[i].message_body}</li>`;
+        document.querySelector('#msgList').innerHTML += `<li><img src="./avatars/${prev[i].avatar_dirct}" alt="avatar" height="25px" width="25px"/> ${prev[i].display_name}: ${prev[i].message_body}</li>`;
     }
     // scroll to bottom of message box
     document.querySelector('#msgList').scrollTop = document.querySelector('#msgList').scrollHeight;
@@ -165,7 +167,7 @@ async function sendMsg(e) {
     e.preventDefault();
     const msg = document.querySelector('#msg').value;
     if (msg) {
-        socket.emit('message', { roomId: currentRoomId, displayName: userInfo.displayName, msg: msg });
+        socket.emit('message', { roomId: currentRoomId, avatar: userInfo.avatar, displayName: userInfo.displayName, msg: msg });
         document.querySelector('#msg').value = '';
     }
     // save message to DB
@@ -184,7 +186,7 @@ function logOut() {
 
 // receive message from server
 socket.on('receivedMsg', (data) => {
-    document.querySelector('#msgList').innerHTML += `<li> ${data.displayName}: ${data.msg}</li>`;
+    document.querySelector('#msgList').innerHTML += `<li><img src="./avatars/${data.avatar}"  alt="avatar" height="25px" width="25px"/> ${data.displayName}: ${data.msg}</li>`;
     // scroll to bottom of message box
     document.querySelector('#msgList').scrollTop = document.querySelector('#msgList').scrollHeight;
 })
