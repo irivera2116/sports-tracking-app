@@ -1,8 +1,9 @@
-const el_username = document.querySelector('#register-first-name');
-const el_firstname = document.querySelector('#register-first-name');
-const el_lastname = document.querySelector('#register-last-name');
-const el_password = document.querySelector('#register-password');
-const el_password2 = document.querySelector('#register-confirm-password');
+const el_username = document.querySelector('#username');
+const el_firstname = document.querySelector('#firstname');
+const el_lastname = document.querySelector('#lastname');
+const el_password = document.querySelector('#password');
+const el_password2 = document.querySelector('#passwordConfirm');
+let el_avatar;
 const el_error1 = document.querySelector('#error1');
 const el_error1b = document.querySelector('#error1b');
 const el_error1c = document.querySelector('#error1c');
@@ -85,8 +86,30 @@ async function checkUser(event){
     }
     document.querySelector("#continue").setAttribute("data-bs-target", "#staticBackdrop");
     document.querySelector("#continue").removeAttribute("onClick");
-   
+    showAvatars();
     document.querySelector('#continue').click();
+}
+
+// make an array of avatar URL paths
+async function showAvatars() {
+    const checkUser = await fetchJSON ('/api/avatars'); //picture array fetching
+    console.log(checkUser);
+    checkUser.forEach(image => {
+        let imageName = image.replace('.png','');
+        document.querySelector('#modal-body').innerHTML += 
+        `<div class="col-3">
+            <img class="img-responsive avatar" style="margin:0 auto;" src="./avatars/${image}" 
+            alt="avatar image" id="${imageName}" onClick="getAvatar('${imageName}')"/>
+        </div>`
+    });
+}
+
+
+// make the clicked avatar the only remaining image on HTML
+function getAvatar(imageName){
+    if (el_avatar) document.querySelector(`#${el_avatar}`).classList.remove('chosen');
+    el_avatar = imageName;
+    document.querySelector(`#${imageName}`).classList.add('chosen');
 }
 
 //when clicking the register button...
@@ -97,11 +120,11 @@ async function register(event) {
         firstname: el_firstname.value.trim(),
         lastname: el_lastname.value.trim(),
         password: el_password.value,
-        
+        avatar: `${el_avatar}.png`,
     };
     const response = await fetchJSON( '/api/register', 'post', newUser )
     if( response.message ) {
         alert( response.message )
     }
-    window.location.replace( '/' );
+    window.location.replace( 'login' );
 }

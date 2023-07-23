@@ -1,76 +1,50 @@
-<div class="flex justify-center items-center h-screen">
-  <!-- Login Form -->
-  <form class="w-96 p-6 shadow-lg bg-white rounded-md text-slate-600">
-    <h1 class="font-bold text-center text-2xl text-gray-600">
-      <i class="fa-solid fa-medal" style="color: #050505;"></i>
-      Login
-      <i class="fa-solid fa-medal" style="color: #050505;"></i></h1>
-    <!-- User Name Area -->
-    <div class="mt-4">
-      <label for="user-log" class="block text-base mb-2">Username:</label>
-      <input
-        type="text"
-        id="user-log"
-        placeholder="Enter your Username"
-        class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-500"
-      />
-    </div>
-    <!-- Password Area -->
-    <div class="mt-4">
-      <label for="password-log" class="block text-base mb-2">Password</label>
-      <input
-        type="password"
-        id="password-log"
-        placeholder="Enter your Password"
-        class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-500"
-      />
-    </div>
-    <!-- Submit Button -->
-    <div class="mt-4">
-      <button
-        class="text-zinc-300 bg-slate-700 w-full border-2 border-slate-700 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700"
-        type="submit"
-      >Login</button>
-    </div>
-  </form>
+<!DOCTYPE html>
+<html lang="en">
 
-  <!-- Register Form 
-<form id="register-form">
-    <h2>Register</h2>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <div>
-        <label for="register-first-name">First Name</label>
-        <input type="text" id="register-first-name" name="firstname" placeholder="Enter your first name">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><b>Flux IM</b></a>
+      <div id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/signup">Sign Up</a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
 
-        <div>
-        <label for="register-last-name">Last Name</label>
-        <input type="text" id="register-last-name" name="lastname" placeholder="Enter your last name">
-    </div>
+  <div class="home-container">
+    <header class="home-header">
+      <h1>Flux IM</h1>
+    </header>
+    <main class="home-main">
+      <form class="login">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <br>
+          <input id="username" type="text" placeholder="Username">
+        </div>
+        <div class="form-group mt-3">
+          <label for="password">Password:</label>
+          <br>
+          <input id="password" type="password" placeholder="Password">
+        </div>
+      </form>
+      <button onClick="login()" type="submit" class="btn btn-info">Login</button>
+    </main>
+    <div id='errorBox' class="alert alert-danger d-none">Sorry! Your login was invalid!</div>
+  </div>
 
-        <div>
-        <label for="register-display-name">Display Name</label>
-        <input type="text" id="register-display-name" name="displayname" placeholder="Enter your display name">
-    </div>
+  <script src="javascript/index.js"></script>
+</body>
 
-    <div>
-        <label for="register-email">Email</label>
-        <input type="email" id="register-email" name="email" placeholder="Enter you Email">
-    </div>
-
-    <div>
-        <label for="register-password">Password</label>
-        <input type="password" id="register-password" name="password" placeholder="Enter your Password">
-    </div>
-
-    <div>
-        <label for="register-confirm-passwrod">Confirm Password</label>
-        <input type="password" id="register-confirm-password" name="confirm-password" placeholder="Confirm your Password">
-    </div>
-
-    <!-- Submit for register button 
-    <div>
-    <button type="submit">Register</button>
-    </div> 
-</form> -->
-</div>
+</html>
