@@ -25,13 +25,13 @@ INSERT INTO messages (user_id, room_id, message_body)
 VALUES (1, 1, 'WELCOME TO THE NFL CHAT ROOM!');
 
 INSERT INTO messages (user_id, room_id, message_body)
-VALUES (2, 1, 'WELCOME TO THE NBA CHAT ROOM!');
+VALUES (1, 2, 'WELCOME TO THE NBA CHAT ROOM!');
 
 INSERT INTO messages (user_id, room_id, message_body)
-VALUES (3, 1, 'WELCOME TO THE MLB CHAT ROOM!');
+VALUES (1, 3, 'WELCOME TO THE MLB CHAT ROOM!');
 
 INSERT INTO messages (user_id, room_id, message_body)
-VALUES (4, 1, 'WELCOME TO THE MLS CHAT ROOM!');
+VALUES (1, 4, 'WELCOME TO THE MLS CHAT ROOM!');
 
 
 
