@@ -37,7 +37,7 @@ async function roomList() {
     // print rooms to room list
     for (let i = 0; i < rooms.length; i++) {
         document.querySelector('#roomList').innerHTML +=
-      `<li><button class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" id="room-${rooms[i].id}">${rooms[i].room_name}</button></li>`;
+      `<li><button class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" style="margin: 10px;" id="room-${rooms[i].id}">${rooms[i].room_name}</button></li>`;
         document.querySelector('#overlayRoomList').innerHTML +=
       `<li><button class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" id="overlayRoom-${rooms[i].id}">${rooms[i].room_name}</button>
       <button class="btn btn-outline-danger chatroomBtnDelete" id="overlayRoomDel-${rooms[i].id}" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick="triggerModal('${rooms[i].id}')">Delete</button></li>`;
@@ -92,7 +92,7 @@ async function prevMsgs(roomId) {
         .catch(err => [{ display_name: 'Error', message_body: err }]);
     // print messages
     for (let i = 0; i < prev.length; i++) {
-        document.querySelector('#msgList').innerHTML += `<li><img src="./avatars/${prev[i].avatar_dirct}" alt="avatar" height="25px" width="25px"/> ${prev[i].display_name}: ${prev[i].message_body}</li>`;
+        document.querySelector('#msgList').innerHTML += `<li class="border rounded-md bg-gray-300 text-gray-950" style="margin: 10px;"><img src="./avatars/${prev[i].avatar_dirct}" alt="avatar" height="25px" width="25px"/> ${prev[i].display_name}: ${prev[i].message_body}</li>`;
     }
     // scroll to bottom of message box
     document.querySelector('#msgList').scrollTop = document.querySelector('#msgList').scrollHeight;
