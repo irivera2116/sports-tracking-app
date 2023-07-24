@@ -22,15 +22,15 @@
 
   <!-- CHAT ROOM DISPLAY -->
   <div class="grid grid-cols-1 gap-4 content-start">
-    <div class="row">
+    <div class="flex">
       <!-- LEFT HAND SIDE (ROOMS) -->
-      <div class="max-w-[15%] ">
+      <div class=" flex-column float-left w-44 h-full bg-slate-700 justify-top font-bold text-2xl">
         <h4>Room List</h4>
         <ul id="roomList"></ul>
       </div>
       <!-- MAIN FOCUS (MESSAGES) -->
-      <div class="flex justify-center">
-        <h3 class="justify-top font-bold text-2xl whitespace-pre" id="roomName"> Room name </h3>
+      <div class=" ml-11 block">
+         <h3 class="justify-top font-bold text-2xl whitespace-pre" id="roomName"> Room name </h3>
         <ul class="msg-list" id="msgList"></ul>
         <!-- INPUT AREA -->
         <form class="justify-self-end object-position-bottom" id="msgForm">
@@ -39,9 +39,8 @@
         </form>
       </div>
       <!-- RIGHT HAND SIDE (USERS) -->
-      <!-- hide this column if screen size is less than large -->
-      <div class="col-lg-2 d-none d-lg-block d-xl-nonetext-end side padding textEnd">
-        <h4>Online Users</h4>
+      <div class="ml-11">
+        <h4 class="justify-top font-bold text-2xl whitespace-pre" >Online Users</h4>
         <ul id="userList"></ul>
       </div>
     </div>
@@ -71,15 +70,15 @@
           <form class="login">
             <div class="form-group">
               <label for="addRoom">Room Name:</label>
-              <input id="addRoom" type="text" placeholder="Room Name">
-              <br />
-              <span id="error1" class="d-none">The Room Name already exists, or contains a space. Try again.</span>
+              <input id="addRoom" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-50 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ENTER ROOM NAME">
+            
+              {{!-- <span id="error1" class="d-no">The Room Name already exists, or contains a space. Try again.</span> --}}
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button id="addRoomBtn" onClick="createRoom()" type="button" class="btn btn-primary">Add Room</button>
+          <button type="button" class="m-1.5 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" data-bs-dismiss="modal">Cancel</button>
+          <button id="addRoomBtn" onClick="createRoom()" type="button" class="m-1.5 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Add Room</button>
         </div>
       </div>
     </div>
@@ -91,14 +90,14 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Delete Confirmation</h5>
+          {{!-- <h5 class="modal-title" id="staticBackdropLabel">Delete Confirmation</h5> --}}
         </div>
-        <div class="alert">
+        {{!-- <div class="alert">
           Woah! Are you sure you want to delete the Room?
-        </div>
+        </div>> --}}
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button id="deleteRoomBtn" type="button" class="btn btn-primary" data-bs-dismiss="modal">DELETE</button>
+          <button type="button" class="m-1.5 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" data-bs-dismiss="modal">Cancel</button>
+          <button id="deleteRoomBtn" type="button" class="m-1.5 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" data-bs-dismiss="modal">DELETE</button>
         </div>
       </div>
     </div>
