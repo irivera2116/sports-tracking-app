@@ -5,9 +5,11 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 8080;
+
 // socketIO implementation
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+
 // server-side array for keeping track of users in a room
 let userList = [];
 
@@ -21,10 +23,14 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// connecting to routing file
-require('./routes/apiRoute.js')(app, userList);
+// connect to routes
+const apiRoute = require('./routes/apiRoute');
+const scoreRoute = require('./routes/scoreRoute'); // Import the score route
 
-// connecting to socketIO routing
+apiRoute(app, userList);
+app.use('/scores', scoreRoute); // Use the score route
+
+// connect to socketIO routing
 io.on('connection', (socket) => require('./routes/socketRoute.js')(io, socket, userList));
 
 // start server
