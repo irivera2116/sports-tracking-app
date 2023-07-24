@@ -37,7 +37,7 @@ async function roomList() {
     // print rooms to room list
     for (let i = 0; i < rooms.length; i++) {
         document.querySelector('#roomList').innerHTML +=
-      `<li><button class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" style="margin: 10px;" id="room-${rooms[i].id}">${rooms[i].room_name}</button></li>`;
+      `<li><button class="m-1.5 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" style="margin: 10px;" id="room-${rooms[i].id}">${rooms[i].room_name}</button></li>`;
         document.querySelector('#overlayRoomList').innerHTML +=
       `<li><button class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" id="overlayRoom-${rooms[i].id}">${rooms[i].room_name}</button>
       <button class="btn btn-outline-danger chatroomBtnDelete" id="overlayRoomDel-${rooms[i].id}" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick="triggerModal('${rooms[i].id}')">Delete</button></li>`;
@@ -119,16 +119,16 @@ async function joinRoom(room) {
 async function createRoom(){
     const rooms = await fetch('/api/rooms').then(r => r.json());
     console.log('room', rooms)
-    const el_error1 = document.querySelector('#error1');
+    // const el_error1 = document.querySelector('#error1');
     const el_roomName = document.querySelector('#addRoom').value;
 
-    el_error1.classList.add('d-none');
+    // el_error1.classList.add('d-none');
 
     const checkDuplicate = rooms.filter(room=>(room.room_name === el_roomName));
 
     if ( el_roomName === '' || el_roomName.includes(' ') || checkDuplicate.length !== 0){
         console.log('This is duplicate: ', checkDuplicate);
-        el_error1.classList.remove('d-none');
+        // el_error1.classList.remove('d-none');
         return;
     } else {
         console.log ('This room is available.');
@@ -139,7 +139,7 @@ async function createRoom(){
         }).then( res=>res.json() )
         console.log( 'The room is added.');
         document.querySelector('#addRoomBtn').setAttribute('data-bs-toggle', 'modal');
-        document.querySelector('#addRoomBtn').setAttribute('data-bs-target', '#exampleModal');
+        // document.querySelector('#addRoomBtn').setAttribute('data-bs-target', '#exampleModal');
         document.querySelector('#addRoomBtn').removeAttribute('onClick');
         document.querySelector('#addRoomBtn').click();
         document.querySelector('#addRoomBtn').removeAttribute('data-bs-target');
