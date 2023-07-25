@@ -2,6 +2,7 @@ const mysql = require('mysql2');
 
 class Database {
     constructor(config) {
+        console.log(process.env.JAWSDB_URL)
         this.connection = mysql.createConnection( process.env.JAWSDB_URL ? process.env.JAWSDB_URL : config );
     }
 
@@ -29,6 +30,7 @@ class Database {
         } );
     }
 };
+
 
 const connectDB = (dbName, dbPassword) => {
     const db = new Database({
