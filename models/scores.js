@@ -10,10 +10,10 @@ router.get('/', async (req, res) => {
       method: 'GET',
       url: 'https://allscores.p.rapidapi.com/api/allscores/games-scores',
       params: {
-        startDate: '18/01/20223',
+        startDate: '18/01/2023',
         langId: '1',
         sport: '1',
-        endDate: '18/01/20223',
+        endDate: '18/01/2023',
         timezone: 'America/Chicago',
         onlyMajorGames: 'true',
         withTop: 'true'
