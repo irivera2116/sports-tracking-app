@@ -39,8 +39,8 @@ async function roomList() {
         document.querySelector('#roomList').innerHTML +=
       `<li><button class="m-1.5 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" style="margin: 10px;" id="room-${rooms[i].id}">${rooms[i].room_name}</button></li>`;
         document.querySelector('#overlayRoomList').innerHTML +=
-      `<li><button class="bg-slate-700 font-bold text-zinc-300 w-full border-2 border-slate-950 rounded-lg hover:bg-transparent hover:font-extrabold hover:text-slate-700" id="overlayRoom-${rooms[i].id}">${rooms[i].room_name}</button>
-      <button class="btn btn-outline-danger chatroomBtnDelete" id="overlayRoomDel-${rooms[i].id}" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick="triggerModal('${rooms[i].id}')">Delete</button></li>`;
+      `<li><button class="m-1.5 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" style="margin: 10px;" id="overlayRoom-${rooms[i].id}">${rooms[i].room_name}</button>
+      <button class="text-zinc-300" id="overlayRoomDel-${rooms[i].id}" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onClick="triggerModal('${rooms[i].id}')">Delete</button></li>`;
        // document.querySelector('#sbRoomList').innerHTML +=
      // `<li class="center"><button class="btn btn-info chatroomBtn btnSize" id="sbRoom-${rooms[i].id}">${rooms[i].room_name}</button></li>`;
     }
@@ -193,7 +193,7 @@ socket.on('receivedMsg', (data) => {
 
 // receive connected event from server
 socket.on('enteredRoom', (data) => {
-    document.querySelector('#msgList').innerHTML += `<li class="system-msg">User ${data.displayName} has entered the room</li>`;
+    document.querySelector('#msgList').innerHTML += `<li class="text-zinc-300 pl-1">User ${data.displayName} has entered the room</li>`;
     // scroll to bottom of message box
     document.querySelector('#msgList').scrollTop = document.querySelector('#msgList').scrollHeight;
     userList();
